@@ -104,7 +104,7 @@ void resume(int c)
     R[L[c]]=c;
 }
 
-bool dfs()
+bool dfs()//找到一个解，不一定是最优解
 {
     if (R[0]==0) return 1;
     
@@ -128,7 +128,33 @@ bool dfs()
     return 0;
 }
 
-//重复覆盖问题对remove，resume进行修改
+//重复覆盖问题对remove，resume，dfs进行修改
+void dfs(int x)
+{
+	if (x>=ans) return;
+	if (R[0]==0) 
+	{
+		ans=x;
+		return;
+	}
+	
+	int idx=R[0];
+	
+	for (int i=D[idx];i!=idx;i=D[i])
+	{
+		remove(i);
+		for (int j=R[i];j!=i;j=R[j])
+			remove(j);
+		dfs(x+1);
+		for (int j=L[i];j!=i;j=L[j])
+			resume(j);
+		resume(i);
+	}
+	
+
+	return;
+}
+
 void remove(int c)
 {
     for (int i=D[c];i!=c;i=D[i])
