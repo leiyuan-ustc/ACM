@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdio>
+#include <algorithm>
 using namespace std;
 int q[400010],p[400010],tree[400010],a[100010];
 void build(int v,int l,int r)
@@ -10,11 +12,11 @@ void build(int v,int l,int r)
         tree[v]=l;
         return;
     }
-    int mid=(l+r)>>1;
-    build(v<<1,l,mid);
-    build(v<<1|1,mid+1,r);
-    if (a[tree[v<<1]]<a[tree[v<<1|1]]) tree[v]=tree[v<<1];
-    else tree[v]=tree[v<<1|1];
+    int mid=(l+r)/2;
+    build(v*2,l,mid);
+    build(v*2+1,mid+1,r);
+    if (a[tree[v*2]]<a[tree[v*2+1]]) tree[v]=tree[v*2];
+    else tree[v]=tree[v*2+1];
 }
 int find(int v,int l,int r,int x)
 {
@@ -24,12 +26,12 @@ int find(int v,int l,int r,int x)
         if (a[tree[v]]<=x) return tree[v];
         else return -1;
     }
-    if (l<=q[v<<1]) 
+    if (l<=q[v*2]) 
     {
-        int t=find(v<<1,l,r,x);
+        int t=find(v*2,l,r,x);
         if (t!=-1) return t;
     }
-    if (r>=p[v<<1|1]) return find(v<<1|1,l,r,x);
+    if (r>=p[v*2+1]) return find(v*2+1,l,r,x);
 }
 main()
 {
