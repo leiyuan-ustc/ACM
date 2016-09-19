@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+int q[400010],p[400010],tree[400010],a[100010];
+void build(int v,int l,int r)
+{
+    p[v]=l;q[v]=r;
+    if (l==r)
+    {
+        scanf("%d",&a[l]);
+        tree[v]=l;
+        return;
+    }
+    int mid=(l+r)>>1;
+    build(v<<1,l,mid);
+    build(v<<1|1,mid+1,r);
+    if (a[tree[v<<1]]<a[tree[v<<1|1]]) tree[v]=tree[v<<1];
+    else tree[v]=tree[v<<1|1];
+}
+int find(int v,int l,int r,int x)
+{
+    if (a[tree[v]]>x) return -1;
+    if (p[v]==q[v]) 
+    {
+        if (a[tree[v]]<=x) return tree[v];
+        else return -1;
+    }
+    if (l<=q[v<<1]) 
+    {
+        int t=find(v<<1,l,r,x);
+        if (t!=-1) return t;
+    }
+    if (r>=p[v<<1|1]) return find(v<<1|1,l,r,x);
+}
+main()
+{
+    int T,n;
+    scanf("%d",&T);
+    while (T-->0)
+    {
+        scanf("%d",&n);
+        build(1,1,n);
+        int q;
+        scanf("%d",&q);
+        for (int i=1;i<=q;i++)
+        {
+            int l,r,x;
+            scanf("%d%d",&l,&r);
+            x=a[l];
+            while (l<r)
+            {
+                l++;
+                l=find(1,l,r,x);
+                if (l==-1) break;
+                x%=a[l];
+            }
+            cout<<x<<endl;
+        }
+    }
+}
