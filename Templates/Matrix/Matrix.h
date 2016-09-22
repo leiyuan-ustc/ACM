@@ -1,7 +1,7 @@
-const int cc=0x7FFFFFFF;//模数 
+const int cc=0x7FFFFFFF,MAXN=1e3+1;//模数 
 struct Matrix
 {
-    int r,c,w[100][100];//r是行数，c是列数，下标从1开始 
+    int r,c,w[MAXN][MAXN];//r是行数，c是列数，下标从1开始 
 };
 Matrix operator+(const Matrix &A,const Matrix &B)//加法，减法对此复制即可 
 {
