@@ -1,0 +1,12 @@
+#Compiled Obiect Files:
+*.o
+
+#Executables
+*.out
+
+#Backups
+*~
+
+#DS_Store
+.DS_Store
+
