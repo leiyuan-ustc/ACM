@@ -1,5 +1,5 @@
 #include <cstdio>
-const int MAXN=105;
+const int MAXN=505;
 #define LL long long
 /*
 高斯消元 - 同余方程
@@ -51,7 +51,7 @@ struct GaussMatrix
 				x[i]=((X%mod+mod)%mod)*tmp%mod;
 			}
 		}
-		LL gauss(LL mod) // -1 表示无解
+		LL gauss(LL mod) // -1 表示无解 
 		{
 			int i,j,k;
 			int col,maxrow;
@@ -85,7 +85,7 @@ struct GaussMatrix
 			for(j=i;j<r;j++)
 				if(d[j][c])	return -1;
 			int free_num=c-i;
-			xcnt=(((LL)1)<<(LL)free_num);
+			xcnt=(((LL)1)<<(LL)free_num);//此处为2进制下特殊情形，正解应为xcnt=p^free_num 
 			getAns(mod);
 			return xcnt;
 		}
