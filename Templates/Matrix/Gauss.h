@@ -7,20 +7,16 @@ const int MAXN=105;
 */
 LL ExpGcd(LL a,LL b,LL &X,LL &Y)
 {
-	LL q,temp;
 	if(!b)
 	{
-		q=a;
 		X=1;
 		Y=0;
-		return q;
+		return a;
 	}
 	else
 	{
-		q=ExpGcd(b,a%b,X,Y);
-		temp=X;
-		X=Y;
-		Y=temp-(a/b)*Y;
+		long long q=ExpGcd(b,a%b,Y,X);
+		Y-=a/b*X;
 		return q;
 	}
 }
@@ -95,14 +91,10 @@ struct GaussMatrix
 		}
 		void debug_print()
 		{
-			int i,j;
 			printf("-------------------------------\n");
-			for(i=0;i<r;i++)
+			for(int i=0;i<r;i++)
 			{
-				for(j=0;j<=c;j++)
-				{
-					printf("%d ",d[i][j]);
-				}
+				for(int j=0;j<=c;j++) printf("%d ",d[i][j]);
 				puts("");
 			}
 			printf("-------------------------------\n");
