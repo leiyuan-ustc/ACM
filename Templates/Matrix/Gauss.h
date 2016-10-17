@@ -51,7 +51,7 @@ struct GaussMatrix
 				x[i]=((X%mod+mod)%mod)*tmp%mod;
 			}
 		}
-		LL gauss(LL mod) // -1 表示无解 
+		LL gauss(LL mod) // -1 表示无解 mod=999999937 就是1e9-63
 		{
 			int i,j,k;
 			int col,maxrow;
