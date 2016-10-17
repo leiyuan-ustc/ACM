@@ -24,7 +24,7 @@ Matrix operator*(const Matrix &A,const Matrix &B)//乘法
 	for (int i=1;i<=A.r;i++)
 	 for (int j=1;j<=B.c;j++)
 	 {
-	 	C.w[i][j]=0;
+	    C.w[i][j]=0;
 	    for (int k=1;k<=A.c;k++)
 	     C.w[i][j]=((A.w[i][k]*B.w[k][j])%cc+C.w[i][j])%cc;
 	 }
@@ -59,8 +59,8 @@ Matrix powsum(Matrix A,int k,Matrix &C)//快速幂求和
 	if (k&1) 
 	{
 	    C=C*C*A;
-		B=B+C;
-    }
+            B=B+C;
+        }
 	else C=C*C;
 	return B;
 }
