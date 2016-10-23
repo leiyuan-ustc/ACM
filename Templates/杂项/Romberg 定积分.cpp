@@ -1,6 +1,7 @@
 #define f(x) (x)  //举例函数
 #define epsilon 0.0001  //精度
-#define MAXREPT  10   //迭代次数,到最后仍达不到精度要求,则输出T(m=10).
+#define MAXREPT  10   //迭代次数,到最后仍达不到精度要求,则输出T(m=10).  
+//亲测精度取0.001，迭代次数取15~16 by Yang
 double Romberg(double aa, double bb)
 { //aa,bb 积分上下限
     int m, n;//m控制迭代次数, 而n控制复化梯形积分的分点数. n=2^m
